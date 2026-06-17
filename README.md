@@ -5,7 +5,7 @@ You can copy and paste this markdown directly into your project's `README.md` fi
 
 ---
 
-markdown
+
 # StayHub_ReservationSystem
 
 This repository contains the documentation and deployment configuration for **StayHub_ReservationSystem**, a secure Node.js-based web application tailored for managing accommodations and reservations.
