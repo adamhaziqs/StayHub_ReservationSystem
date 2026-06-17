@@ -83,7 +83,7 @@ Once the installation and configuration steps are finalized, you can initialize 
 1. **Start the Application**
 Run the pre-configured start script within your terminal:
 ```powershell
-node server.js
+node "c:\Users\user\OneDrive\Desktop\Project ssd\Secure Microservice-Based Web Application with OWASP-Compliant Development Practices\server.js"
 
 ```
 
