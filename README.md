@@ -142,9 +142,9 @@ The application relies on a curated stack of production dependencies managed via
 ---
 
 Contributers:
-ADAM HAZIQ BIN DANIANTO
-MUHAMMAD ‘AZIM BIN HASHIM 
-MUHAMMAD HAKIMI BIN SAHUDI 
+- ADAM HAZIQ BIN DANIANTO
+- MUHAMMAD ‘AZIM BIN HASHIM 
+- MUHAMMAD HAKIMI BIN SAHUDI 
 
 
 
