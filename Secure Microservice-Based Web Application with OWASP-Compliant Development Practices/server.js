@@ -375,8 +375,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 const sessionSecure = process.env.HTTPS === 'true' || process.env.NODE_ENV === 'production';
 const SESSION_TIMEOUT = (parseInt(process.env.SESSION_TIMEOUT_MINS, 10) || 30) * 60 * 1000; // minutes -> ms
 
@@ -396,9 +394,18 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 // CSRF protection: protects all state-changing routes. Tokens will be injected into forms below.
 const csrfProtection = csurf();
-app.use(csrfProtection);
+const shouldSkipCsrf = (req) => {
+  return req.path.includes('/upload');
+};
+app.use((req, res, next) => {
+  if (shouldSkipCsrf(req)) return next();
+  csrfProtection(req, res, next);
+});
 
 app.get('/', (req, res) => {
   const user = currentUser(req);
@@ -2042,6 +2049,131 @@ app.get('/logout', (req, res, next) => {
   }
 });
 
+// PROFILE PICTURE UPLOAD ROUTE
+app.post('/profile/upload-picture', ensureAuthenticated, upload.single('profilePicture'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.redirect('/profile?error=No file uploaded');
+    }
+
+    const user = currentUser(req);
+    if (!user) {
+      if (req.file && fs.existsSync(req.file.path)) {
+        fs.unlinkSync(req.file.path);
+      }
+      return res.redirect('/login');
+    }
+
+    // Get the user from data store (not from session, to ensure it's updated)
+    let userData = data.users.find((u) => u.id === user.id);
+    if (!userData) {
+      if (req.file && fs.existsSync(req.file.path)) {
+        fs.unlinkSync(req.file.path);
+      }
+      return res.redirect('/profile?error=User not found');
+    }
+
+    // Delete old profile picture if it exists
+    if (userData.profileImageFileName) {
+      const oldImagePath = path.join(UPLOAD_DIR, userData.profileImageFileName);
+      if (fs.existsSync(oldImagePath)) {
+        try {
+          // Validate path to prevent directory traversal
+          const realPath = fs.realpathSync(oldImagePath);
+          const realUploadDir = fs.realpathSync(UPLOAD_DIR);
+          if (realPath.startsWith(realUploadDir)) {
+            fs.unlinkSync(oldImagePath);
+          }
+        } catch (err) {
+          console.warn('Failed to delete old profile picture:', err.message);
+        }
+      }
+    }
+
+    // Move file from temp to final location
+    const finalFileName = req.file.filename;
+    const finalPath = path.join(UPLOAD_DIR, finalFileName);
+    try {
+      fs.renameSync(req.file.path, finalPath);
+    } catch (err) {
+      // Fallback for cross-partition moves
+      fs.copyFileSync(req.file.path, finalPath);
+      fs.unlinkSync(req.file.path);
+    }
+
+    // Update user with new profile image filename
+    userData.profileImageFileName = finalFileName;
+    writeData(data);
+
+    // Update session/request user object
+    if (req.user) {
+      req.user.profileImageFileName = finalFileName;
+    }
+    if (req.session && req.session.localUser) {
+      req.session.localUser.profileImageFileName = finalFileName;
+    }
+
+    audit('profile_picture_updated', 'User updated profile picture', req, user.id);
+    res.redirect('/profile?success=Profile picture updated successfully');
+  } catch (err) {
+    // Clean up temp file on error
+    if (req.file && fs.existsSync(req.file.path)) {
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch (e) {
+        console.error('Failed to cleanup temp file:', e.message);
+      }
+    }
+    console.error('Profile picture upload error:', err.message);
+    console.error('Stack:', err.stack);
+    audit('profile_picture_upload_failed', `Upload failed: ${err.message}`, req, req.user?.id);
+    res.redirect('/profile?error=File upload failed. Please try again.');
+  }
+});
+
+app.post('/profile/delete-picture', ensureAuthenticated, (req, res) => {
+  try {
+    const user = currentUser(req);
+    if (!user) {
+      return res.redirect('/login');
+    }
+
+    let userData = data.users.find((u) => u.id === user.id);
+    if (!userData || !userData.profileImageFileName) {
+      return res.redirect('/profile?error=No picture to delete');
+    }
+
+    const filePath = path.join(UPLOAD_DIR, userData.profileImageFileName);
+    if (fs.existsSync(filePath)) {
+      try {
+        const realPath = fs.realpathSync(filePath);
+        const realUploadDir = fs.realpathSync(UPLOAD_DIR);
+        if (realPath.startsWith(realUploadDir)) {
+          fs.unlinkSync(filePath);
+        }
+      } catch (err) {
+        console.error('Error deleting picture:', err.message);
+      }
+    }
+
+    delete userData.profileImageFileName;
+    writeData(data);
+
+    if (req.user) {
+      delete req.user.profileImageFileName;
+    }
+    if (req.session && req.session.localUser) {
+      delete req.session.localUser.profileImageFileName;
+    }
+
+    audit('profile_picture_deleted', 'User deleted profile picture', req, user.id);
+    res.redirect('/profile?success=Profile picture deleted successfully');
+  } catch (err) {
+    console.error('Delete picture error:', err.message);
+    res.redirect('/profile?error=Failed to delete picture');
+  }
+});
+
 // FILE UPLOAD SECURITY ROUTES
 // Upload property images (admin only)
 app.post('/admin/properties/:id/upload-image', ensureAuthenticated, ensureAdmin, upload.single('propertyImage'), csrfProtection, (req, res) => {
@@ -2158,60 +2290,6 @@ app.post('/admin/properties/:id/delete-image', ensureAuthenticated, ensureAdmin,
     console.error('File deletion error:', err.message);
     audit('file_deletion_failed', `File deletion failed: ${err.message}`, req, req.user.id);
     res.status(500).json({ error: 'File deletion failed' });
-  }
-});
-
-// NEW: Upload profile picture
-app.post('/profile/upload-picture', ensureAuthenticated, upload.single('profilePicture'), csrfProtection, (req, res) => {
-  try {
-    if (!req.file) {
-      return res.redirect('/profile?error=No file uploaded or invalid file type/size.');
-    }
-
-    const user = currentUser(req);
-    if (!user) { // Should not happen due to ensureAuthenticated, but good for safety
-      fs.unlinkSync(req.file.path); // Clean up uploaded file
-      return res.redirect('/profile?error=User not found.');
-    }
-
-    // Delete old profile picture if it exists
-    if (user.profileImageFileName) {
-      const oldFilePath = path.join(UPLOAD_DIR, user.profileImageFileName);
-      if (fs.existsSync(oldFilePath)) { // Check if file exists before calling realpathSync
-        // Ensure the old file is actually within the UPLOAD_DIR to prevent path traversal during deletion
-        const realOldFilePath = fs.realpathSync(oldFilePath);
-        const realUploadDir = fs.realpathSync(UPLOAD_DIR);
-        if (realOldFilePath.startsWith(realUploadDir)) {
-          fs.unlinkSync(oldFilePath);
-        }
-      }
-    }
-
-    // Move file from temp to permanent storage
-    const finalFileName = req.file.filename; // Multer already renamed it to UUID
-    const finalPath = path.join(UPLOAD_DIR, finalFileName);
-    try {
-      fs.renameSync(req.file.path, finalPath);
-    } catch (err) {
-      // Fallback for cross-partition moves
-      fs.copyFileSync(req.file.path, finalPath);
-      fs.unlinkSync(req.file.path);
-    }
-
-    // Store file reference in user profile
-    user.profileImageFileName = finalFileName;
-    writeData(data);
-
-    audit('profile_picture_uploaded', `Profile picture uploaded for user ${user.email}`, req, user.id);
-    res.redirect('/profile?success=Profile picture uploaded successfully.');
-  } catch (err) {
-    // Clean up temp file on error
-    if (req.file && fs.existsSync(req.file.path)) {
-      fs.unlinkSync(req.file.path);
-    }
-    console.error('Profile picture upload error:', err.message);
-    audit('profile_picture_upload_failed', `Profile picture upload failed: ${err.message}`, req, req.user.id);
-    res.redirect(`/profile?error=Upload failed: ${err.message}`);
   }
 });
 

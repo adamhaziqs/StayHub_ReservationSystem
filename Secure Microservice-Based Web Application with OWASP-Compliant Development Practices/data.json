@@ -7,7 +7,8 @@
       "passwordHash": "310000:1886eb2f83a671f1a56b88448af47b55d7b8ca50b6880220361ab39028de10a7:8df895ff2f2cb5f68a19c1362056c226e1aafd5825eb21afd3982c2412ff35852a73a67cd1b04e72182bde45b94864b6c797b537df2508a0da635e33cb6e31aa",
       "role": "admin",
       "provider": "local",
-      "createdAt": "2026-05-16T14:30:32.585Z"
+      "createdAt": "2026-05-16T14:30:32.585Z",
+      "profileImageFileName": "36ab7efc212c8fed0b854683b580913c.png"
     },
     {
       "id": "5ab75742d1c6805a606f",
@@ -66,10 +67,259 @@
       "createdAt": "2026-06-17T05:12:07.943Z",
       "resetToken": "1037494a5c2ab8c48db3b5710019179207e1c8d1e1790ed5e8b3d06fa04fe22e",
       "resetTokenExpiry": "2026-06-17T06:23:06.779Z"
+    },
+    {
+      "id": "b32c0dc099f24c9cdd7f",
+      "displayName": "Test User",
+      "email": "testuser@example.com",
+      "passwordHash": "310000:1f5e25295c9fc61150e4dbd622ce2226b9204692c04aa3c08859684cb481fbf6:94c5c1d0151c38560f0d10431cc0fd4fc3de447294ace623fff43a9b87734b52e4d2fcc057a3863af8a1fb074fb7bfeab8ec32a9bd0ab4b90a8b27de471619c4",
+      "role": "user",
+      "provider": "local",
+      "createdAt": "2026-06-17T18:39:17.055Z"
     }
   ],
   "tasks": [],
   "auditLogs": [
+    {
+      "id": "3bda3b8df00c77479b07",
+      "timestamp": "2026-06-17T19:04:39.857Z",
+      "type": "file_downloaded",
+      "message": "File downloaded: 36ab7efc212c8fed0b854683b580913c.png",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "8887df21204da8a696c5",
+      "timestamp": "2026-06-17T19:04:39.827Z",
+      "type": "profile_picture_updated",
+      "message": "User updated profile picture",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "f52bde84456e318134bc",
+      "timestamp": "2026-06-17T19:04:31.599Z",
+      "type": "profile_picture_deleted",
+      "message": "User deleted profile picture",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "0e67ab152ffe8f0dad78",
+      "timestamp": "2026-06-17T19:04:26.000Z",
+      "type": "file_downloaded",
+      "message": "File downloaded: b4d76b91130488b1c14a7a421c9b3b97.jpg",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "aae5c2868c1d81a58519",
+      "timestamp": "2026-06-17T19:04:25.972Z",
+      "type": "profile_picture_updated",
+      "message": "User updated profile picture",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "51e2695e1b686df5bf81",
+      "timestamp": "2026-06-17T19:04:10.296Z",
+      "type": "file_downloaded",
+      "message": "File downloaded: 9d8b0cb513d33a91a95dbe03b311bfb0.jpg",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "89971d424dcafb6f96b9",
+      "timestamp": "2026-06-17T19:04:10.268Z",
+      "type": "profile_picture_updated",
+      "message": "User updated profile picture",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "9ddbbce41997c6c23670",
+      "timestamp": "2026-06-17T19:04:04.248Z",
+      "type": "file_downloaded",
+      "message": "File downloaded: 215569eb970f86e4a92a28146d961c8e.jpeg",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "ce6c598bbbe8a82c70cd",
+      "timestamp": "2026-06-17T19:04:04.220Z",
+      "type": "profile_picture_updated",
+      "message": "User updated profile picture",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "e3340a6584b95588aa9e",
+      "timestamp": "2026-06-17T19:03:57.783Z",
+      "type": "file_downloaded",
+      "message": "File downloaded: 40f2b441127733ea31fc45305917df14.png",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "24faab1e193a4286b075",
+      "timestamp": "2026-06-17T19:03:57.731Z",
+      "type": "profile_picture_updated",
+      "message": "User updated profile picture",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "c6b9cab74e3f953ce55f",
+      "timestamp": "2026-06-17T19:03:24.245Z",
+      "type": "file_downloaded",
+      "message": "File downloaded: 94da65049de4d2e341db0f294e260aa9.png",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "8f0c48302482bff14c5a",
+      "timestamp": "2026-06-17T19:03:24.212Z",
+      "type": "profile_picture_updated",
+      "message": "User updated profile picture",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "65e545aecf864e46f67b",
+      "timestamp": "2026-06-17T19:03:19.217Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "68e1f93ec9e6a82d106b",
+      "timestamp": "2026-06-17T18:39:17.056Z",
+      "type": "user_created",
+      "message": "Local user registered",
+      "ip": "::1",
+      "userId": "b32c0dc099f24c9cdd7f"
+    },
+    {
+      "id": "4ef325949d6e34ca93f2",
+      "timestamp": "2026-06-17T18:38:24.226Z",
+      "type": "login_failed",
+      "message": "Admin attempted to log in via /login",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "138e78bcdeded91b1ac6",
+      "timestamp": "2026-06-17T18:33:30.957Z",
+      "type": "login_failed",
+      "message": "Admin attempted to log in via /login",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "4b09e6d12e2707486a29",
+      "timestamp": "2026-06-17T18:32:54.474Z",
+      "type": "login_failed",
+      "message": "Admin attempted to log in via /login",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "d0abe0898de99ea869b2",
+      "timestamp": "2026-06-17T18:32:39.185Z",
+      "type": "login_failed",
+      "message": "Admin attempted to log in via /login",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "9666f77c87176386b8f8",
+      "timestamp": "2026-06-17T18:27:13.940Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "1188fa160ba72b7bec46",
+      "timestamp": "2026-06-17T18:27:11.796Z",
+      "type": "login_failed",
+      "message": "Admin attempted to log in via /login",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "7b83750c6c041fb2be15",
+      "timestamp": "2026-06-17T18:14:09.396Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "78e328c80140c04ddb68",
+      "timestamp": "2026-06-17T18:12:47.674Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "c11e29196cf786f52d94",
+      "timestamp": "2026-06-17T18:11:12.568Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "262c48e274550c77528d",
+      "timestamp": "2026-06-17T18:08:23.461Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "1be6e454071a0c7ef42e",
+      "timestamp": "2026-06-17T18:08:14.875Z",
+      "type": "login_failed",
+      "message": "Admin attempted to log in via /login",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "43cd126a8800dcfaac3a",
+      "timestamp": "2026-06-17T18:04:42.502Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::ffff:127.0.0.1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "832323def9e3b96c7849",
+      "timestamp": "2026-06-17T18:00:57.989Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::ffff:127.0.0.1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "9cb77b49ed72489dcba4",
+      "timestamp": "2026-06-17T18:00:54.762Z",
+      "type": "login_failed",
+      "message": "Admin attempted to log in via /login",
+      "ip": "::ffff:127.0.0.1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "220ef951f987fb2be548",
+      "timestamp": "2026-06-17T17:58:14.459Z",
+      "type": "login_success",
+      "message": "Local login succeeded",
+      "ip": "::ffff:127.0.0.1",
+      "userId": "7ff8e45c87df7157360b"
+    },
     {
       "id": "2382d8e9501c510f0977",
       "timestamp": "2026-06-17T17:52:20.399Z",
@@ -1425,246 +1675,6 @@
     {
       "id": "219ca11bd61d75ad5abe",
       "timestamp": "2026-06-17T05:22:52.894Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "3c485525e5b47adb0a64",
-      "timestamp": "2026-06-17T05:22:52.893Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "be72a962b343fc895224",
-      "timestamp": "2026-06-17T05:22:52.890Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "5d801725b15dc6b8a5bf",
-      "timestamp": "2026-06-17T05:22:52.889Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "e3c52cc5f29da389d2a4",
-      "timestamp": "2026-06-17T05:22:52.885Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "c750c91937da57905769",
-      "timestamp": "2026-06-17T05:22:52.885Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "840b0dc971fdb1997b12",
-      "timestamp": "2026-06-17T05:22:52.882Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "bc62fade307dd67340c3",
-      "timestamp": "2026-06-17T05:22:52.881Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "dea619d72dae5da00c96",
-      "timestamp": "2026-06-17T05:22:52.879Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "e669debdd988f417ecbc",
-      "timestamp": "2026-06-17T05:22:52.878Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "0239d452c17baacf3895",
-      "timestamp": "2026-06-17T05:22:52.874Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "2861cd98d60181ae3f7f",
-      "timestamp": "2026-06-17T05:22:52.873Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "360b9d46d13f53ff05c7",
-      "timestamp": "2026-06-17T05:22:52.870Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "04436a45400fe33d36f6",
-      "timestamp": "2026-06-17T05:22:52.868Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "26a127cddbb2a1fd6fbb",
-      "timestamp": "2026-06-17T05:22:52.866Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "d095bdaa74cff3aebba2",
-      "timestamp": "2026-06-17T05:22:52.863Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "5ed91aa9aaa3058db7f1",
-      "timestamp": "2026-06-17T05:22:52.860Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "4feb7b426ec438b19406",
-      "timestamp": "2026-06-17T05:22:52.858Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "43c90eb9422b0dbff922",
-      "timestamp": "2026-06-17T05:22:52.855Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "6b8bbdbcc83b82ab4b61",
-      "timestamp": "2026-06-17T05:22:52.852Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "19d62cc78bc70b1fbb2a",
-      "timestamp": "2026-06-17T05:22:52.850Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "1d6b0f029e66ab1cd172",
-      "timestamp": "2026-06-17T05:22:52.848Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "cbd3c260c0c0c8cff314",
-      "timestamp": "2026-06-17T05:22:52.846Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "d67efe3780b7d354dbe7",
-      "timestamp": "2026-06-17T05:22:52.843Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "b52bf70cfa51393ec5bf",
-      "timestamp": "2026-06-17T05:22:52.840Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "3ea2afd0e6edef0f30f3",
-      "timestamp": "2026-06-17T05:22:52.839Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "5c9e5333a3f8867e03ae",
-      "timestamp": "2026-06-17T05:22:52.836Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "6e8f83a206cbf990dbcf",
-      "timestamp": "2026-06-17T05:22:52.835Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "1063db5e7771ad84a9f3",
-      "timestamp": "2026-06-17T05:22:52.831Z",
-      "type": "login_failed",
-      "message": "Local login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "d1cb4721fa36d051398f",
-      "timestamp": "2026-06-17T05:22:52.830Z",
-      "type": "login_failed",
-      "message": "Admin login failed",
-      "ip": "::ffff:127.0.0.1",
-      "userId": "b352e196889f6706443c"
-    },
-    {
-      "id": "f27e2e8c05c3fd5a42e0",
-      "timestamp": "2026-06-17T05:22:52.805Z",
       "type": "login_failed",
       "message": "Local login failed",
       "ip": "::ffff:127.0.0.1",
