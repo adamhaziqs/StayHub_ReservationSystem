@@ -139,8 +139,12 @@ The application relies on a curated stack of production dependencies managed via
 <img width="1665" height="895" alt="Screenshot 2026-06-17 140513" src="https://github.com/user-attachments/assets/b23a6a2c-b174-4aa9-a6c5-f95ce7bbff3e" />
 
 
+---
+
+Contributers:
+ADAM HAZIQ BIN DANIANTO
+MUHAMMAD ‘AZIM BIN HASHIM 
+MUHAMMAD HAKIMI BIN SAHUDI 
 
 
-```
 
-```
