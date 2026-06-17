@@ -14,8 +14,23 @@ console.log('🚀 Starting secure server...');
 
 const app = express();
 const DATA_FILE = path.join(__dirname, 'data.json');
-const UPLOAD_DIR = path.join(__dirname, 'uploads');
-const TEMP_UPLOAD_DIR = path.join(__dirname, 'temp_uploads');
+// Store uploaded files outside the immediate application web root
+const UPLOAD_DIR = path.join(__dirname, '..', 'secure_storage', 'uploads');
+const TEMP_UPLOAD_DIR = path.join(__dirname, '..', 'secure_storage', 'temp');
+
+// Configuration Validation
+const isProduction = process.env.NODE_ENV === 'production';
+const SESSION_SECRET = process.env.SESSION_SECRET;
+
+if (isProduction) {
+  if (!SESSION_SECRET || SESSION_SECRET === 'change-this-in-production') {
+    console.error('❌ CRITICAL SECURITY ERROR: SESSION_SECRET must be set to a strong, unique value in production.');
+    process.exit(1);
+  }
+  if (!process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD === 'Admin123!') {
+    console.warn('⚠️  WARNING: Using default or missing ADMIN_PASSWORD in production is highly discouraged.');
+  }
+}
 
 // Ensure upload directories exist and are secure
 if (!fs.existsSync(UPLOAD_DIR)) {
@@ -42,8 +57,8 @@ function isValidFileExtension(filename) {
 
 function getRandomFileName(originalName) {
   const ext = path.extname(originalName);
-  const randomName = crypto.randomBytes(16).toString('hex') + ext;
-  return randomName;
+  // Use standard UUID for unique, unpredictable filenames
+  return `${crypto.randomUUID()}${ext}`;
 }
 
 // Multer storage configuration - uses temp directory first
@@ -361,7 +376,7 @@ const sessionSecure = process.env.HTTPS === 'true' || process.env.NODE_ENV === '
 const SESSION_TIMEOUT = (parseInt(process.env.SESSION_TIMEOUT_MINS, 10) || 30) * 60 * 1000; // minutes -> ms
 
 app.use(session({ 
-  secret: process.env.SESSION_SECRET || 'change-this-in-production', 
+  secret: SESSION_SECRET || 'change-this-in-production', 
   resave: false, 
   saveUninitialized: false,
   rolling: true,
@@ -1841,8 +1856,14 @@ app.get('/admin/audit', ensureAuthenticated, ensureAdmin, (req, res) => {
 app.get('/profile', ensureAuthenticated, (req, res) => {
   const user = currentUser(req);
   const email = user.email || (user.emails && user.emails.length > 0 ? user.emails[0].value : 'N/A');
-  const avatar = user.provider === 'google' && user.photos && user.photos.length > 0 ? user.photos[0].value : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName)}&background=e74c3c&color=fff`;
+  // Prioritize uploaded profile picture, then Google, then UI Avatars
+  const profileImageSrc = user.profileImageFileName 
+    ? `/uploads/${user.profileImageFileName}` 
+    : (user.provider === 'google' && user.photos && user.photos.length > 0 ? user.photos[0].value : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.displayName)}&background=e74c3c&color=fff`);
+
   const bookingsCount = (data.bookings || []).filter((b) => b.guestId === user.id).length;
+  const error = escapeHtml(req.query.error || '');
+  const success = escapeHtml(req.query.success || '');
   res.send(`
       <!DOCTYPE html>
       <html lang="en">
@@ -1853,11 +1874,12 @@ app.get('/profile', ensureAuthenticated, (req, res) => {
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
         <style>
           body { background: #f8f9fa; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-          .container { max-width: 500px; margin: 60px auto; background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); overflow: hidden; }
+          .container { max-width: 680px; margin: 40px auto; background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); overflow: hidden; }
           .profile-banner { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); padding: 40px 30px; text-align: center; color: white; }
           .profile-banner h1 { margin: 0; font-size: 1.5rem; }
           .profile-banner p { margin: 5px 0 0 0; opacity: 0.9; }
-          .profile-content { padding: 40px 30px; }
+          .profile-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 40px 30px; }
+          .profile-card { background: #ffffff; border-radius: 16px; padding: 24px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
           .avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; box-shadow: 0 2px 12px rgba(0,0,0,0.08); background: #e9ecef; margin: -60px auto 20px; display: block; border: 4px solid white; }
           .profile-details { margin: 30px 0; }
           .detail-row { display: flex; align-items: center; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid #e9ecef; }
@@ -1871,6 +1893,15 @@ app.get('/profile', ensureAuthenticated, (req, res) => {
           .btn-primary:hover { background: #c0392b; }
           .btn-outline { background: transparent; color: #e74c3c; border: 2px solid #e74c3c; }
           .btn-outline:hover { background: #e74c3c; color: white; }
+          .message { padding: 14px 18px; margin-bottom: 22px; border-radius: 12px; font-size: 0.95rem; }
+          .message.error { background: #fdecea; color: #b02a37; border: 1px solid #f5c2c7; }
+          .message.success { background: #e6ffed; color: #1d7a3d; border: 1px solid #b7eb8f; }
+          .form-group { margin-bottom: 18px; }
+          .form-group label { display: block; margin-bottom: 8px; color: #565656; font-size: 0.95rem; }
+          .form-control { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid #dcdfe3; font-size: 0.95rem; }
+          .form-control:focus { outline: none; border-color: #e74c3c; box-shadow: 0 0 0 2px rgba(231,76,60,0.12); }
+          .section-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 18px; }
+          .section-note { font-size: 0.95rem; color: #6c757d; margin-top: 10px; }
         </style>
       </head>
       <body>
@@ -1879,24 +1910,106 @@ app.get('/profile', ensureAuthenticated, (req, res) => {
             <h1>${escapeHtml(user.displayName)}</h1>
             <p>${user.role === 'admin' ? '<i class="fas fa-shield-alt"></i> Administrator' : '<i class="fas fa-user"></i> Guest'}</p>
           </div>
-          <img src="${avatar}" alt="Avatar" class="avatar">
-          <div class="profile-content">
-            <div class="profile-details">
-              <div class="detail-row"><i class="fas fa-envelope"></i><span class="detail-label">Email:</span> <span class="detail-value">${escapeHtml(email)}</span></div>
-              <div class="detail-row"><i class="fas fa-key"></i><span class="detail-label">ID:</span> <span class="detail-value" style="font-size: 0.85rem; font-family: monospace;">${escapeHtml(user.id.substring(0, 12))}...</span></div>
-              <div class="detail-row"><i class="fas fa-network-wired"></i><span class="detail-label">Provider:</span> <span class="detail-value">${user.provider ? user.provider.charAt(0).toUpperCase() + user.provider.slice(1) : 'Email'}</span></div>
-              <div class="detail-row"><i class="fas fa-calendar-check"></i><span class="detail-label">Bookings:</span> <span class="detail-value">${bookingsCount}</span></div>
-              <div class="detail-row"><i class="fas fa-calendar-alt"></i><span class="detail-label">Member Since:</span> <span class="detail-value">${new Date(user.createdAt).toLocaleDateString()}</span></div>
+          <div class="profile-flex">
+            <div class="profile-card">
+              <img src="${profileImageSrc}" alt="Profile Picture" class="avatar">
+              <div class="profile-details">
+                <div class="detail-row"><i class="fas fa-envelope"></i><span class="detail-label">Email:</span> <span class="detail-value">${escapeHtml(email)}</span></div>
+                <div class="detail-row"><i class="fas fa-key"></i><span class="detail-label">ID:</span> <span class="detail-value" style="font-size: 0.85rem; font-family: monospace;">${escapeHtml(user.id.substring(0, 12))}...</span></div>
+                <div class="detail-row"><i class="fas fa-network-wired"></i><span class="detail-label">Provider:</span> <span class="detail-value">${user.provider ? user.provider.charAt(0).toUpperCase() + user.provider.slice(1) : 'Email'}</span></div>
+                <div class="detail-row"><i class="fas fa-calendar-check"></i><span class="detail-label">Bookings:</span> <span class="detail-value">${bookingsCount}</span></div>
+                <div class="detail-row"><i class="fas fa-calendar-alt"></i><span class="detail-label">Member Since:</span> <span class="detail-value">${new Date(user.createdAt).toLocaleDateString()}</span></div>
+              </div>
+              <div class="actions">
+                <a href="${user.role === 'admin' ? '/admin' : '/user'}" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back</a>
+                <a href="/logout" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i> Logout</a>
+              </div>
             </div>
-            <div class="actions">
-              <a href="${user.role === 'admin' ? '/admin' : '/user'}" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back</a>
-              <a href="/logout" class="btn btn-primary"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            <div class="profile-card">
+              ${error ? `<div class="message error">${error}</div>` : ''}
+              <div class="section-title">Profile Picture</div>
+              <form method="POST" action="/profile/upload-picture" enctype="multipart/form-data" style="margin-bottom: 20px;">
+                <input type="hidden" name="_csrf" value="${req.csrfToken()}">
+                <div class="form-group">
+                  <label for="profilePicture">Upload new picture</label>
+                  <input type="file" id="profilePicture" name="profilePicture" accept="image/jpeg,image/png,image/webp,image/gif" class="form-control">
+                  <p class="section-note">Max 5MB. Allowed: JPG, PNG, WebP, GIF.</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload Picture</button>
+              </form>
+              ${user.profileImageFileName ? `
+                <form method="POST" action="/profile/delete-picture">
+                  <input type="hidden" name="_csrf" value="${req.csrfToken()}">
+                  <button type="submit" class="btn btn-outline" style="background: #dc3545; color: white; border: none; margin-top: 10px;">Delete Picture</button>
+                </form>
+              ` : ''}
+
+              <hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+              ${success ? `<div class="message success">${success}</div>` : ''}
+              ${success ? `<div class="message success">${success}</div>` : ''}
+              <div class="section-title">Change Password</div>
+              ${user.provider === 'google' ? `
+                <p class="section-note">This account uses Google login. Password changes are managed through Google, not this site.</p>
+              ` : `
+                <form method="POST" action="/profile/change-password">
+                  <div class="form-group">
+                    <label for="currentPassword">Current password</label>
+                    <input id="currentPassword" name="currentPassword" type="password" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="newPassword">New password</label>
+                    <input id="newPassword" name="newPassword" type="password" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="confirmPassword">Confirm new password</label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" class="form-control" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Update password</button>
+                  <p class="section-note">Password must be at least 12 characters and include uppercase, lowercase, number, and special character.</p>
+                </form>
+              `}
             </div>
           </div>
         </div>
       </body>
       </html>
     `);
+});
+
+app.post('/profile/change-password', ensureAuthenticated, (req, res) => {
+  const user = currentUser(req);
+  if (!user) return res.redirect('/login');
+  if (user.provider === 'google') {
+    return res.redirect('/profile?error=Password changes are not available for Google login users.');
+  }
+
+  const { currentPassword, newPassword, confirmPassword } = req.body || {};
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    return res.redirect('/profile?error=Please complete all password fields.');
+  }
+
+  if (newPassword !== confirmPassword) {
+    return res.redirect('/profile?error=New passwords do not match.');
+  }
+
+  if (!verifyPassword(currentPassword, user.passwordHash)) {
+    return res.redirect('/profile?error=Current password is incorrect.');
+  }
+
+  const passwordPolicy = /^(?=.{12,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).*$/;
+  if (!passwordPolicy.test(newPassword)) {
+    return res.redirect('/profile?error=Password must be at least 12 characters and include lowercase, uppercase, number, and special character.');
+  }
+
+  user.passwordHash = hashPassword(newPassword);
+  writeData(data);
+  if (req.session) {
+    req.session.localUser = user;
+  }
+
+  audit('password_change', `Password changed for user ${user.email}`, req, user.id);
+  return res.redirect('/profile?success=Password changed successfully.');
 });
 
 app.get('/logout', (req, res, next) => {
@@ -1938,14 +2051,13 @@ app.post('/admin/properties/:id/upload-image', ensureAuthenticated, ensureAdmin,
       return res.status(404).json({ error: 'Property not found' });
     }
 
-    // Move file from temp to permanent storage with new name
-    const finalFileName = `property_${property.id}_${Date.now()}.jpg`;
+    // Use the random UUID filename generated by Multer storage
+    const finalFileName = req.file.filename;
     const finalPath = path.join(UPLOAD_DIR, finalFileName);
     fs.renameSync(req.file.path, finalPath);
 
     // Store file reference in property
     property.imageFileName = finalFileName;
-    property.imageUploadedAt = new Date().toISOString();
     writeData(data);
 
     audit('file_uploaded', `Property image uploaded for '${property.name}'`, req, req.user.id);
@@ -2037,6 +2149,69 @@ app.post('/admin/properties/:id/delete-image', ensureAuthenticated, ensureAdmin,
     audit('file_deletion_failed', `File deletion failed: ${err.message}`, req, req.user.id);
     res.status(500).json({ error: 'File deletion failed' });
   }
+});
+
+// NEW: Upload profile picture
+app.post('/profile/upload-picture', ensureAuthenticated, upload.single('profilePicture'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.redirect('/profile?error=No file uploaded or invalid file type/size.');
+    }
+
+    const user = currentUser(req);
+    if (!user) { // Should not happen due to ensureAuthenticated, but good for safety
+      fs.unlinkSync(req.file.path); // Clean up uploaded file
+      return res.redirect('/profile?error=User not found.');
+    }
+
+    // Delete old profile picture if it exists
+    if (user.profileImageFileName) {
+      const oldFilePath = path.join(UPLOAD_DIR, user.profileImageFileName);
+      // Ensure the old file is actually within the UPLOAD_DIR to prevent path traversal during deletion
+      const realOldFilePath = fs.realpathSync(oldFilePath);
+      const realUploadDir = fs.realpathSync(UPLOAD_DIR);
+      if (realOldFilePath.startsWith(realUploadDir) && fs.existsSync(oldFilePath)) {
+        fs.unlinkSync(oldFilePath);
+      }
+    }
+
+    // Move file from temp to permanent storage
+    const finalFileName = req.file.filename; // Multer already renamed it to UUID
+    const finalPath = path.join(UPLOAD_DIR, finalFileName);
+    fs.renameSync(req.file.path, finalPath);
+
+    // Store file reference in user profile
+    user.profileImageFileName = finalFileName;
+    writeData(data);
+
+    audit('profile_picture_uploaded', `Profile picture uploaded for user ${user.email}`, req, user.id);
+    res.redirect('/profile?success=Profile picture uploaded successfully.');
+  } catch (err) {
+    // Clean up temp file on error
+    if (req.file && fs.existsSync(req.file.path)) {
+      fs.unlinkSync(req.file.path);
+    }
+    console.error('Profile picture upload error:', err.message);
+    audit('profile_picture_upload_failed', `Profile picture upload failed: ${err.message}`, req, req.user.id);
+    res.redirect(`/profile?error=Upload failed: ${err.message}`);
+  }
+});
+
+// NEW: Delete profile picture
+app.post('/profile/delete-picture', ensureAuthenticated, (req, res) => {
+  const user = currentUser(req);
+  if (!user || !user.profileImageFileName) {
+    return res.redirect('/profile?error=No profile picture to delete.');
+  }
+
+  const filePath = path.join(UPLOAD_DIR, user.profileImageFileName);
+  if (fs.existsSync(filePath)) { // No need for realpath check here as filename is system-generated UUID
+    fs.unlinkSync(filePath);
+  }
+  delete user.profileImageFileName;
+  writeData(data);
+  audit('profile_picture_deleted', `Profile picture deleted for user ${user.email}`, req, user.id);
+  res.redirect('/profile?success=Profile picture deleted successfully.');
 });
 
 // ERROR HANDLER - don't expose sensitive error details to users
