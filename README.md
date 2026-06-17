@@ -83,7 +83,7 @@ Once the installation and configuration steps are finalized, you can initialize 
 1. **Start the Application**
 Run the pre-configured start script within your terminal:
 ```powershell
-npm start
+node server.js
 
 ```
 
