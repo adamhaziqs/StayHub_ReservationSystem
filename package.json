@@ -1,5 +1,26 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "ejs": "^6.0.1"
   }
+=======
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-session": "^1.18.2",
+    "google-auth-library": "^10.5.0",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
+  },
+  "name": "project-ssd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+>>>>>>> c11214524045b59a897db5c38ee8413b957fa0fc
 }
