@@ -1,5 +1,9 @@
 {
   "dependencies": {
+<<<<<<< HEAD
+    "ejs": "^6.0.1"
+  }
+=======
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "express-session": "^1.18.2",
@@ -18,4 +22,5 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs"
+>>>>>>> c11214524045b59a897db5c38ee8413b957fa0fc
 }

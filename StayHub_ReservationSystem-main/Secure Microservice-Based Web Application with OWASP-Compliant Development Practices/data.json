@@ -1,0 +1,768 @@
+{
+  "users": [
+    {
+      "id": "39ddd64e1b51b31589d6",
+      "displayName": "Administrator",
+      "email": "admin@example.com",
+      "passwordHash": "310000:1886eb2f83a671f1a56b88448af47b55d7b8ca50b6880220361ab39028de10a7:8df895ff2f2cb5f68a19c1362056c226e1aafd5825eb21afd3982c2412ff35852a73a67cd1b04e72182bde45b94864b6c797b537df2508a0da635e33cb6e31aa",
+      "role": "admin",
+      "provider": "local",
+      "createdAt": "2026-05-16T14:30:32.585Z"
+    },
+    {
+      "id": "5ab75742d1c6805a606f",
+      "displayName": "Adam Haziq Danianto",
+      "email": "adamhaziq.danny@gmail.com",
+      "role": "user",
+      "provider": "google",
+      "googleId": "117706654903119363773",
+      "createdAt": "2026-05-16T14:33:41.725Z"
+    },
+    {
+      "id": "8e191767a901e6c26946",
+      "displayName": "adamhaziq",
+      "email": "adam.haziq@yahoo.com",
+      "passwordHash": "8b46aabb300a759ef82d75e00926ff58:a3369b940fdccbe2913f0fdfda09cabaed69b4aa9150810dc0312e2068a7f10ba18d89c20b46277155c576306dff6a4ee5ab4b34dccc7c5297f997bb6b2c91bd",
+      "role": "user",
+      "provider": "local",
+      "createdAt": "2026-05-20T06:27:10.090Z"
+    },
+    {
+      "id": "54bc20aed9335b744d52",
+      "displayName": "John Guest",
+      "email": "john@example.com",
+      "passwordHash": "310000:c40d7b7c994e4f34c39ec58d9076a3a6f54fc623ee54f895ba20bb6af5db0a84:c58ce2efb8ed0d0b05cd3900ed6d1ec8a8091f2357d3e3692e81091ae3ec4becb7b5ba75325b9c801531e154b917db106b7f302232db24e94531a74dc0db78a3",
+      "role": "user",
+      "provider": "local",
+      "createdAt": "2026-05-20T13:51:51.114Z"
+    },
+    {
+      "id": "d6cd0a9fd4a70b2f7e9b",
+      "displayName": "ademe",
+      "email": "ademe.hzq@gmail.com",
+      "passwordHash": "310000:f18e2e11f5b8352115f7ff543db35a44a72636873bc802fe3677e06a5c4e23df:7b494ef281ed64a1f05835231b02cad673308f58f8bbfc1c500988995e203c338a2133510909e5a76fe75edee1dcd16e7e0edc787db5e7636f52b9f61b2c304f",
+      "role": "user",
+      "provider": "local",
+      "createdAt": "2026-06-01T14:42:26.262Z",
+      "resetToken": "67c9112d1bc0014b22876386fee85350202f7e94f16c3465891b30bd3b43acff",
+      "resetTokenExpiry": "2026-06-01T15:42:53.203Z"
+    },
+    {
+      "id": "294d2b323ccb83395197",
+      "displayName": "hakimi",
+      "email": "muhdhkimie98@gmail.com",
+      "passwordHash": "310000:0c92071ffeb7b2151a14d70ed105cb012be71896a5aa3a7f746fb98dd7987fe0:d25f6b52aa75171097f6a28543c71da65a30f11f39b3670e5545c01fc4d4c789f8b7b6b4c67811d2b6c75bae3cce43c2f0bb40f2c0e42a37536af8dbb2c821ac",
+      "role": "user",
+      "provider": "local",
+      "createdAt": "2026-06-17T04:14:48.150Z"
+    }
+  ],
+  "tasks": [],
+  "auditLogs": [
+    {
+      "id": "05c8fed40817678c354b",
+      "timestamp": "2026-06-17T04:16:58.078Z",
+      "type": "booking_created",
+      "message": "Booking created for property 'Sunway Hotel' by [REDACTED_EMAIL]",
+      "ip": "::1",
+      "userId": "294d2b323ccb83395197"
+    },
+    {
+      "id": "73b707eff5c058aea9f5",
+      "timestamp": "2026-06-17T04:15:43.056Z",
+      "type": "booking_created",
+      "message": "Booking created for property 'Dar Villa' by [REDACTED_EMAIL]",
+      "ip": "::1",
+      "userId": "294d2b323ccb83395197"
+    },
+    {
+      "id": "14d1e99527d705e9f5d0",
+      "timestamp": "2026-06-17T04:14:48.158Z",
+      "type": "user_created",
+      "message": "Local user registered",
+      "ip": "::1",
+      "userId": "294d2b323ccb83395197"
+    },
+    {
+      "id": "25082a625729aa721291",
+      "timestamp": "2026-06-17T04:09:19.874Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": null
+    },
+    {
+      "id": "43064872d54d284dc037",
+      "timestamp": "2026-06-03T06:29:22.435Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "fccdd2e746023abc0066",
+      "timestamp": "2026-06-03T06:23:42.384Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "45a8af91ef0d91ed55a3",
+      "timestamp": "2026-06-03T06:23:23.961Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "fa5ed908aaa32942404c",
+      "timestamp": "2026-06-03T06:23:14.725Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "5b6c144dfa8b6c9ab013",
+      "timestamp": "2026-06-03T06:22:44.029Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "6c8bd164efae975f3fb3",
+      "timestamp": "2026-06-01T14:42:53.204Z",
+      "type": "password_reset_requested",
+      "message": "[REDACTED] reset requested for user",
+      "ip": "::1",
+      "userId": "d6cd0a9fd4a70b2f7e9b"
+    },
+    {
+      "id": "a952a240be11f359e4e3",
+      "timestamp": "2026-06-01T14:42:26.268Z",
+      "type": "user_created",
+      "message": "Local user registered",
+      "ip": "::1",
+      "userId": "d6cd0a9fd4a70b2f7e9b"
+    },
+    {
+      "id": "da0678285f1b7c1aeb78",
+      "timestamp": "2026-06-01T14:34:28.746Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": null
+    },
+    {
+      "id": "78690cf6664c01ce4d68",
+      "timestamp": "2026-06-01T14:33:56.547Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "d79a49648df8cbaa06a7",
+      "timestamp": "2026-06-01T14:20:06.390Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "5f9d97f66e9ba7495996",
+      "timestamp": "2026-06-01T14:19:51.035Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "53393a78bf060284721e",
+      "timestamp": "2026-06-01T14:19:46.567Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "f5fc499138dbc08512eb",
+      "timestamp": "2026-05-27T13:47:27.620Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "1879102e9f7976fc1175",
+      "timestamp": "2026-05-27T13:38:31.600Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "6cc2a8c91a9492178b29",
+      "timestamp": "2026-05-27T13:38:19.695Z",
+      "type": "property_created",
+      "message": "Property 'Grand Hyatt' created in Kuala Lumpur",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "5ce4e6ceb977f80802fc",
+      "timestamp": "2026-05-27T13:37:51.865Z",
+      "type": "property_created",
+      "message": "Property 'Subang Jaya Inn' created in USJ 10",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "522f7310e63ab07d5704",
+      "timestamp": "2026-05-27T13:28:13.113Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "732010baa44dd3722318",
+      "timestamp": "2026-05-26T14:37:21.117Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "976c7db0ebd42dca8f2a",
+      "timestamp": "2026-05-26T14:11:24.915Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "874453c89dffa119a2c6",
+      "timestamp": "2026-05-26T14:08:14.811Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "5a5c1a3ca964fd8cbad2",
+      "timestamp": "2026-05-26T14:08:07.684Z",
+      "type": "property_created",
+      "message": "Property 'Sunway Hotel' created in Bandar Sunway",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "0eabfd7a843c078cc3e6",
+      "timestamp": "2026-05-26T14:06:10.985Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "08bb4ce35eb5b102e501",
+      "timestamp": "2026-05-26T14:05:39.194Z",
+      "type": "booking_created",
+      "message": "Booking created for property 'Dar Villa' by [REDACTED_EMAIL]",
+      "ip": "::1",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "deba55ff2ccfa174633b",
+      "timestamp": "2026-05-26T14:05:17.989Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "35aede84db265e4b5d5d",
+      "timestamp": "2026-05-26T14:05:13.545Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "9f22005f393f133af414",
+      "timestamp": "2026-05-26T14:04:18.855Z",
+      "type": "property_created",
+      "message": "Property 'Dar Villa' created in Puchong",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "821ddeeb572798f3b60d",
+      "timestamp": "2026-05-26T14:03:27.011Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "d32a08c176adbbd6f139",
+      "timestamp": "2026-05-26T14:02:52.208Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "85dc38e53f6fc020e62a",
+      "timestamp": "2026-05-26T13:48:04.499Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "99ff2987a7f07082d256",
+      "timestamp": "2026-05-26T13:40:20.109Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "9ca225884796aa0ea3e9",
+      "timestamp": "2026-05-26T13:40:18.510Z",
+      "type": "login_failed",
+      "message": "Admin attempted to log in via /login",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "9fbc3473963d352152b1",
+      "timestamp": "2026-05-26T13:39:02.703Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "93900f29d4c82b204126",
+      "timestamp": "2026-05-26T13:37:55.077Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "dffbefc3c475afdfb51d",
+      "timestamp": "2026-05-26T13:37:28.447Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "836d7d74deec0fe35939",
+      "timestamp": "2026-05-26T13:36:43.798Z",
+      "type": "login_success",
+      "message": "Admin local login succeeded",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "da6fc69a7df993b9520a",
+      "timestamp": "2026-05-26T13:34:43.758Z",
+      "type": "login_failed",
+      "message": "Admin login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "88bf3aaeab660c8f5743",
+      "timestamp": "2026-05-26T13:34:11.912Z",
+      "type": "login_failed",
+      "message": "Admin login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "7fb2c5106ed46b857602",
+      "timestamp": "2026-05-26T13:32:05.586Z",
+      "type": "login_failed",
+      "message": "Admin login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "85551e3efb344cb513f2",
+      "timestamp": "2026-05-26T13:28:13.825Z",
+      "type": "login_failed",
+      "message": "Admin login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "42b2a7a6cc6e9785802e",
+      "timestamp": "2026-05-26T13:27:54.729Z",
+      "type": "login_failed",
+      "message": "Admin login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "50154c1dd18620665dad",
+      "timestamp": "2026-05-26T13:26:13.300Z",
+      "type": "login_failed",
+      "message": "Admin login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "87ed75363e2978709833",
+      "timestamp": "2026-05-26T13:25:53.051Z",
+      "type": "login_failed",
+      "message": "Admin login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "b5f75a6ac4309917d41d",
+      "timestamp": "2026-05-26T13:20:17.829Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "eaef85dec28e13a480a6",
+      "timestamp": "2026-05-26T13:17:21.852Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "0267e42403185e15750c",
+      "timestamp": "2026-05-20T14:45:12.399Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "c5b26bdc21444b3d3110",
+      "timestamp": "2026-05-20T14:45:09.061Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "d5478bfa391b7b9ac98f",
+      "timestamp": "2026-05-20T14:44:57.191Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "923466d384699d445478",
+      "timestamp": "2026-05-20T14:26:59.889Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "6b2e974e21a768cfc1f8",
+      "timestamp": "2026-05-20T14:23:18.725Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "73b2cf636d371110c3ef",
+      "timestamp": "2026-05-20T14:07:50.700Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": null
+    },
+    {
+      "id": "fb2b8439d617bc158920",
+      "timestamp": "2026-05-20T13:57:32.264Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "e6d4b3bfcaeb74cf51f3",
+      "timestamp": "2026-05-20T13:57:27.316Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "dabc3a2856ba494d72bf",
+      "timestamp": "2026-05-20T13:54:46.776Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "a91d5bea327966c0f963",
+      "timestamp": "2026-05-20T13:54:20.750Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "b0ea0ab8f15ad658f0c2",
+      "timestamp": "2026-05-20T13:53:26.345Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "251ff55a5f1ff165755b",
+      "timestamp": "2026-05-20T13:51:51.116Z",
+      "type": "user_created",
+      "message": "Local user registered",
+      "ip": "::1",
+      "userId": "54bc20aed9335b744d52"
+    },
+    {
+      "id": "544048fd5eb971a48a4d",
+      "timestamp": "2026-05-20T13:51:32.451Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "9c3c4cfd9596cf0332b5",
+      "timestamp": "2026-05-20T13:49:06.211Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "92516fb90cfac868ed7c",
+      "timestamp": "2026-05-20T13:47:31.256Z",
+      "type": "login_failed",
+      "message": "Local login failed",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "d50f9234b3f87928a450",
+      "timestamp": "2026-05-20T13:46:40.821Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "b2b447746d3645e3cd58",
+      "timestamp": "2026-05-20T13:44:42.091Z",
+      "type": "login_success",
+      "message": "Google login succeeded",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "1c49d202dd20a702f8e8",
+      "timestamp": "2026-05-20T06:27:10.096Z",
+      "type": "user_created",
+      "message": "Local user registered: adam.haziq@yahoo.com",
+      "ip": "::1",
+      "userId": "8e191767a901e6c26946"
+    },
+    {
+      "id": "7dc2903d9c024e293322",
+      "timestamp": "2026-05-20T06:13:07.752Z",
+      "type": "login_success",
+      "message": "Local login succeeded for admin@example.com",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "b5f2254f7d84c094f97c",
+      "timestamp": "2026-05-20T06:04:52.386Z",
+      "type": "login_success",
+      "message": "Google login succeeded for adamhaziq.danny@gmail.com",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "993bd88e664ca5fdbe35",
+      "timestamp": "2026-05-20T06:04:47.795Z",
+      "type": "login_failed",
+      "message": "Local login failed for adamhaziq.danny@gmail.com",
+      "ip": "::1",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "25b6e434f7d85a04dbdd",
+      "timestamp": "2026-05-20T06:04:40.311Z",
+      "type": "login_failed",
+      "message": "Local login failed for adamhaziq.danny@gmail.com",
+      "ip": "::1",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "aacf79794b128bc0e2b1",
+      "timestamp": "2026-05-18T01:30:33.976Z",
+      "type": "login_failed",
+      "message": "Local login failed for admin@example.com",
+      "ip": "::1",
+      "userId": "39ddd64e1b51b31589d6"
+    },
+    {
+      "id": "40239b33d6da38910e69",
+      "timestamp": "2026-05-18T01:25:37.612Z",
+      "type": "login_failed",
+      "message": "Local login failed for admin@yahoo.com",
+      "ip": "::1",
+      "userId": null
+    },
+    {
+      "id": "8c1c4c4680693b83ce90",
+      "timestamp": "2026-05-18T01:11:06.496Z",
+      "type": "login_success",
+      "message": "Google login succeeded for adamhaziq.danny@gmail.com",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "00eab349ebf5db5ea14e",
+      "timestamp": "2026-05-16T14:33:41.728Z",
+      "type": "login_success",
+      "message": "Google login succeeded for adamhaziq.danny@gmail.com",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "f0c4f1571266629e497e",
+      "timestamp": "2026-05-16T14:33:41.727Z",
+      "type": "user_created",
+      "message": "Google user registered: adamhaziq.danny@gmail.com",
+      "ip": "system",
+      "userId": "5ab75742d1c6805a606f"
+    },
+    {
+      "id": "365ad591f1483057b94d",
+      "timestamp": "2026-05-16T14:33:38.773Z",
+      "type": "login_failed",
+      "message": "Local login failed for adamhaziq.danny@gmail.com",
+      "ip": "::1",
+      "userId": null
+    },
+    {
+      "id": "30ae617d4e9ee17fe18a",
+      "timestamp": "2026-05-16T14:33:31.516Z",
+      "type": "login_failed",
+      "message": "Local login failed for adamhaziq.danny@gmail.com",
+      "ip": "::1",
+      "userId": null
+    }
+  ],
+  "properties": [
+    {
+      "id": "6a40b3a192fdf97f3ed3",
+      "name": "Dar Villa",
+      "location": "Puchong",
+      "description": "",
+      "price": 500,
+      "active": true,
+      "createdAt": "2026-05-26T14:04:18.853Z",
+      "updatedAt": "2026-05-26T14:04:18.853Z"
+    },
+    {
+      "id": "ead29e311707d3ebbf46",
+      "name": "Sunway Hotel",
+      "location": "Bandar Sunway",
+      "description": "",
+      "price": 300,
+      "active": true,
+      "createdAt": "2026-05-26T14:08:07.679Z",
+      "updatedAt": "2026-05-26T14:08:07.679Z"
+    },
+    {
+      "id": "0a5da3741c0047b5f4a4",
+      "name": "Subang Jaya Inn",
+      "location": "USJ 10",
+      "description": "",
+      "price": 50,
+      "active": true,
+      "createdAt": "2026-05-27T13:37:51.855Z",
+      "updatedAt": "2026-05-27T13:37:51.855Z"
+    },
+    {
+      "id": "825650ff853cc782974b",
+      "name": "Grand Hyatt",
+      "location": "Kuala Lumpur",
+      "description": "",
+      "price": 350,
+      "active": true,
+      "createdAt": "2026-05-27T13:38:19.691Z",
+      "updatedAt": "2026-05-27T13:38:19.691Z"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "d73a244cbd7e9c6e26c6",
+      "guestId": "5ab75742d1c6805a606f",
+      "guestName": "Adam Haziq Danianto",
+      "guestEmail": "adamhaziq.danny@gmail.com",
+      "propertyId": "6a40b3a192fdf97f3ed3",
+      "propertyName": "Dar Villa",
+      "propertyLocation": "Puchong",
+      "checkIn": "2026-05-26",
+      "checkOut": "2026-05-29",
+      "guests": 2,
+      "totalPrice": 1500,
+      "completed": false,
+      "createdAt": "2026-05-26T14:05:39.190Z"
+    },
+    {
+      "id": "15bb38a7632b67fcd633",
+      "guestId": "294d2b323ccb83395197",
+      "guestName": "hakimi",
+      "guestEmail": "muhdhkimie98@gmail.com",
+      "propertyId": "6a40b3a192fdf97f3ed3",
+      "propertyName": "Dar Villa",
+      "propertyLocation": "Puchong",
+      "checkIn": "2026-06-25",
+      "checkOut": "2026-06-30",
+      "guests": 2,
+      "totalPrice": 2500,
+      "completed": false,
+      "createdAt": "2026-06-17T04:15:43.053Z"
+    },
+    {
+      "id": "c13c0075c558be694401",
+      "guestId": "294d2b323ccb83395197",
+      "guestName": "hakimi",
+      "guestEmail": "muhdhkimie98@gmail.com",
+      "propertyId": "ead29e311707d3ebbf46",
+      "propertyName": "Sunway Hotel",
+      "propertyLocation": "Bandar Sunway",
+      "checkIn": "2026-08-09",
+      "checkOut": "2026-08-18",
+      "guests": 2,
+      "totalPrice": 2700,
+      "completed": false,
+      "createdAt": "2026-06-17T04:16:58.076Z"
+    }
+  ]
+}
